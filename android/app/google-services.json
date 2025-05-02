@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "454229895685",
+    "project_id": "authentication-d9a1a",
+    "storage_bucket": "authentication-d9a1a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454229895685:android:13d78d6cfdc041458f0a6c",
+        "android_client_info": {
+          "package_name": "com.example.loginui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKEDHpwD2S2TH4SJnu00JV9YL3GH_AN0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
