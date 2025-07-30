@@ -10,7 +10,9 @@ import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:loginui/EventPage.dart';
 import 'package:loginui/ReportPage.dart';
+import 'package:loginui/chatbotPage.dart';
 import 'package:loginui/loginpage.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     const OpenstreetmapScreen(),
     EventsMapPage(),
     ReportPage(),
+    Chatbotpage()
   ];
 
   Future<void> _logout() async {
@@ -40,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
      Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => Loginpage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
 );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -65,24 +68,46 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.blue,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12),
+          child: GNav(
+            rippleColor: Colors.grey[300]!,
+            hoverColor: Colors.grey[100]!,
+            gap: 8,
+            activeColor: Colors.blue,
+            iconSize: 24,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            duration: const Duration(milliseconds: 400),
+            tabBackgroundColor: Colors.blue.withOpacity(0.1),
+            color: Colors.black,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.event,
+                text: 'Events',
+              ),
+              GButton(
+                icon: Icons.report,
+                text: 'Reports',
+              ),
+              GButton(
+                icon: Icons.chat,
+                text: 'Chatbot',
+                )
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            label: 'Event',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.report),
-            label: 'Report',
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -49,6 +49,7 @@ dependencies:
   intl: ^0.20.2
   image_picker: ^1.1.2
   firebase_storage: ^12.4.5
+  google_nav_bar: ^5.0.7
 
 dev_dependencies:
   flutter_test:
